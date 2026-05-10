@@ -277,19 +277,21 @@ After completing these steps, you will have a fully functional documentation and
 <p>Please note that the steps are not strictly linear, and you may find yourself iterating between them as you build and refine your website. The key is to focus on one aspect at a time while keeping the overall architecture and design in mind. By following this roadmap, you will be able to create a professional and personalized online presence that effectively showcases your work and expertise.</p>
 </div>
 
+## Conclusion
+
+Building a documentation and portfolio website using Astro and Tailwind CSS is a rewarding project that allows you to showcase your work, share your knowledge, and establish your online presence. By following the steps outlined in this roadmap, you can create a unique and personalized website that truly represents you and your work. Remember to focus on one aspect at a time, iterate as needed, and enjoy the process of building your own online space to share with the world.
 
 ## Links to Resources
 
-
 <div class="reference-list">
 <div class="ref-item">
-<a href="https://github.com/" class="ref-link" target="_blank">Github Repository of the Project</a>
+<a href="https://github.com/vasif-asadov1/vasif-asadov1.github.io" class="ref-link" target="_blank">Github Repository of the Project</a>
 </div>
 <div class="ref-item">
 <a href="https://docs.astro.build/en/getting-started/" class="ref-link" target="_blank">Astro Documentation</a>
 </div>
 <div class="ref-item">
-<a href="https://my-website.com/" class="ref-link" target="_blank">My Website</a>
+<a href="https://vasif-asadov1.github.io/" class="ref-link" target="_blank">My Website</a>
 </div>
 </div>
 
