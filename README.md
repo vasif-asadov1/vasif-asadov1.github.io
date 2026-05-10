@@ -27,10 +27,11 @@
 
 This repository hosts the source code for my professional portfolio and technical knowledge base. Built from scratch using **Astro** and **Tailwind CSS**, this platform serves as a structured digital garden to document my journey across:
 
-- 📊 **Data Analysis:** Complex SQL queries (T-SQL, PL/SQL, DuckDB) and BI Dashboards.
-- 🧠 **Data Science:** End-to-end ML pipelines, Predictive Modeling, and AI Architectures.
-- 🔬 **Master's Thesis:** Academic research logs regarding Deep Learning Based Model Predictive Control of Nonlinear Systems.
-- 🐧 **Linux World:** High-performance Linux architecture setups and automation.
+- **Data Analysis:** Complex SQL queries (T-SQL, PL/SQL, DuckDB) and BI Dashboards.
+- **Data Science:** End-to-end ML pipelines, Predictive Modeling, and AI Architectures.
+- **Data Articles:** All data related Tech Articles, Interview Topics in Data Field, Statistics, Probability, SQL and all Data Related Fields.
+- **Linux World:** High-performance Linux architecture setups and automation.
+- **Master's Thesis:** Academic research logs regarding Deep Learning Based Model Predictive Control of Nonlinear Systems.
 
 ## ✨ Key Features
 
