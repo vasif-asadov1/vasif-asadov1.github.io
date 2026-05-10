@@ -121,31 +121,65 @@ const finalNextTitle = frontmatter.custom_next_title || (next ? next.data.title 
   });
 </script>
 
+
+
 <script>
-  document.addEventListener('DOMContentLoaded', () => {
+  function setupTOC() {
     const tocLinks = document.querySelectorAll('.toc-link');
-    const headings = document.querySelectorAll('.prose h2, .prose h3, .prose h4, .prose h5');
+    // H2, H3 ve H4 başlıklarını kapsama alıyoruz
+    const headings = Array.from(document.querySelectorAll('.prose h2, .prose h3, .prose h4'));
 
-    window.addEventListener('scroll', () => {
-      let currentId = '';
-      
-      headings.forEach(heading => {
-        const headingTop = heading.offsetTop;
-        if (window.scrollY >= headingTop - 150) {
-          currentId = heading.getAttribute('id');
-        }
-      });
+    if (headings.length === 0 || tocLinks.length === 0) return;
 
-      tocLinks.forEach(link => {
-        link.classList.remove('text-teal-400', 'font-bold', 'border-teal-500');
-        link.classList.add('border-transparent');
-        
-        if (link.getAttribute('href') === `#${currentId}`) {
-          link.classList.remove('border-transparent');
-          link.classList.add('text-teal-400', 'font-bold', 'border-teal-500');
-          link.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
-        }
-      });
+    // Önce hepsini sıfırla
+    tocLinks.forEach(link => {
+      link.classList.remove('text-teal-400', 'font-bold', 'border-teal-500');
+      link.classList.add('border-transparent');
     });
+
+    const observerOptions = {
+      root: null,
+      // Aktif alanı ekranın tam ortasına odaklıyoruz
+      rootMargin: '-15% 0px -75% 0px',
+      threshold: 0
+    };
+
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          const id = entry.target.getAttribute('id');
+          if (!id) return;
+
+          tocLinks.forEach((link) => {
+            if (link.getAttribute('href') === `#${id}`) {
+              // Diğerlerini temizle
+              tocLinks.forEach(l => {
+                l.classList.remove('text-teal-400', 'font-bold', 'border-teal-500');
+                l.classList.add('border-transparent');
+              });
+              // Aktif olanı yak
+              link.classList.remove('border-transparent');
+              link.classList.add('text-teal-400', 'font-bold', 'border-teal-500');
+            }
+          });
+        }
+      });
+    }, observerOptions);
+
+    headings.forEach((heading) => observer.observe(heading));
+  }
+
+  // Astro sayfa geçişleri ve ilk yükleme için çift dikiş
+  document.addEventListener('astro:page-load', () => {
+    setTimeout(setupTOC, 100); // DOM'un yerleşmesi için 100ms bekle
   });
+
+  // Eğer sayfa ilk defa yükleniyorsa
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', setupTOC);
+  } else {
+    setupTOC();
+  }
 </script>
+
+
