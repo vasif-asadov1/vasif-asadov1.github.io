@@ -612,6 +612,256 @@ By structuring the landing page in this way, we provide visitors with a clear an
 
 
 
+## Write your Project 
+
+After setting the landing page for the data science section, you can start writing your projects. Each project will be a markdown file in the `src/content/data_science` directory.  
+
+For clear design and structure, create separate folder for each project. Then list your sequential procedure inside that folder like `00_problem_description.md`, `01_data_collection.md`, `02_data_cleaning.md` and so on. This way, you can maintain a clear and organized structure for each project, making it easier for visitors to follow along with your work and understand the different stages of your data science projects. With this way, the engine will automatically render the markdown files in the correct order based on their names, providing a seamless navigation experience for users as they explore your projects.
+
+The most important part is adding frontmatter to each markdown file. You should define your layout structure in that frontmatter. For example, you can add the following frontmatter to your `00_problem_description.md` file:
+
+```markdown---
+layout: ../../../layouts/ArticleLayout.astro
+title: Problem Description
+description: A detailed overview of the problem statement, objectives, and scope of the data science project.
+tags: ["Problem Definition", "Data Science", "Project Overview"]
+--- 
+```
+
+This frontmatter will do the following actions:
+
+- Specifies the layout to be used for this markdown file, which is `ArticleLayout.astro`. The path is relative to the location of the markdown file, so it goes up three levels to reach the `layouts` directory.
+- Sets the title of the page to "Problem Description", which will be displayed in the layout and can also be used for SEO purposes.
+- Provides a description for the page, which gives visitors a clear understanding of what the content of the page will cover. This description can also be used in the layout to provide context to the readers.
+- Defines a list of tags related to the content of  the page, which can be used for categorization and styling purposes. These tags can help visitors quickly identify the main topics covered in the page and can also be used for filtering content on the website.
+
+After successful filling the content of your project, it will look like this:
+
+![Project Page](./files/06_page.png)
+
+The markdown files are not rendered beautifully by default. We need to add some styling to make them look better.  Therefore, we should add Tailwind Typography plugin to our project. This plugin provides a set of pre-designed styles for markdown content, making it look more polished and professional. To add the Tailwind Typography plugin, we need to install it and then include it in our Tailwind CSS configuration. Once added, we can use the `prose` class in our markdown content to apply the typography styles, which will enhance the readability and overall appearance of our markdown files on the website.
+
+Run the following command to install the Tailwind Typography plugin:
+
+```bash
+npm install @tailwindcss/typography
+```
+
+Then, open your `global.css` file and add the following line to include the typography plugin:
+
+```css
+@import "tailwindcss";
+@plugin "@tailwindcss/typography";
+```
+
+Now your markdowns will be rendered with the typography styles provided by Tailwind CSS, making them look more visually appealing and easier to read on your website. 
+
+## What next?
+
+After successfully landing one project within a section, you will fill the remaining sections with the same way.  The overall algorithm for filling the content of the website will be:
+
+
+<ul class="algo-steps">
+<li><strong>Create folder:</strong> Create the folder in `src/content/` directory. For example, `src/content/data_analysis` </li>
+<li><strong>Create landing page</strong> For that section, create a landing page. This must named with `index.md`. Put all information about the section in this file.</li>
+<li><strong>Create slug astro file</strong> Navigate to the `src/pages/` directory and create corresponding folder name with hyphen and add `[...slug].astro` file there. <b>src/pages/[...slug].astro</b>. This will find and render all markdowns inside the corresponding content section.</li>
+<li><strong>Create project folder</strong> Inside your section folder (e,g. `src/content/data_analysis`)  create project folder with appropriate name. Its path will be `src/content/data_analysis/project_name`</li>
+<li><strong>Create markdown files:</strong> Inside the project folder, create markdown files for each step of your project. For example, `00_problem_description.md`, `01_data_collection.md`, `02_data_cleaning.md` and so on. Make sure to add frontmatter to each markdown file to specify the layout and other metadata.</li>
+<li><strong>Update Navbar.astro:</strong> All top menu items directions are given inside the `src/components/Navbar.astro` file. Update the file to include the new section in the navigation.</li>
+</ul>
+
+In my case, the Navbar.astro file will look like this after completing the site till today:
+
+<details>
+<summary>Click to see the code</summary>
+
+```astro
+---
+// Navbar.astro (Top Navigation Bar)
+
+const menuItems = [
+  {
+    title: "Data Analysis",
+    path: "/data-analysis",
+    links: [
+      { name: "Advanced SQL & EDA & Tableau", url: "/data-analysis/adventureworks/00_problem_description" },
+      { name: "Analysis & Prediction of Credit Default", url: "/data-analysis/home_credit/00_problem_description" },
+      { name: "SQL Server & Database Design & Tableau (E-Commerce Data)", url: "/data-analysis/olist_ecommerce/00_problem_description" }
+    ]
+  },
+  {
+    title: "Data Science",
+    path: "/data-science",
+    links: [
+      { name: "End-to-End Churn Prediction ", url: "/data-science/customer_churn/00_problem_description" },
+      { name: "Plotly Dash Mastery Course", url: "/data-science/master_dash/00_dash_roadmap" },
+      { name: "Build your Digital Garden - Website", url: "/data-science/build_website/00_problem_description" }
+    ]
+  },
+  {
+    title: "Data Articles",
+    path: "/data-articles",
+    links: [
+      { name: "Overview", url: "/data-articles" }
+    ]
+  },
+  {
+    title: "Linux World",
+    path: "/linux-roadmap",
+    links: [
+      { name: "Application Setups in Linux", url: "/linux-roadmap/app_setups_in_linux" },
+      { name: "Technical Articles in Linux", url: "/linux-roadmap/linux_articles" }
+    ]
+  },
+  {
+    title: "Master Thesis",
+    path: "/master-thesis",
+    links: [
+      { name: "Thesis Description", url: "/master-thesis/00_thesis_description" },
+      { name: "Dataset Preparation", url: "/master-thesis/01_dataset_preparation" }
+    ]
+  }
+];
+---
+
+<nav class="bg-white/80 dark:bg-slate-900/80 backdrop-blur-md border-b border-gray-200 dark:border-slate-800 sticky top-0 z-50">
+  <div class="max-w-[1920px] mx-auto px-4 sm:px-8 lg:px-12">
+    <div class="flex justify-between items-center h-16">
+      
+      <div class="flex items-center">
+        <a href="/" class="flex items-center gap-3 group">
+          <img
+            src="/logo.png"
+            alt="Vasif Asadov Logo"
+            class="h-10 w-auto object-contain group-hover:scale-105 transition-transform duration-300"
+          />
+          <span class="text-xl font-bold text-gray-900 dark:text-white tracking-tight">
+            Data Science <span class="text-teal-500">|</span> AI Research
+          </span>
+        </a>
+      </div>
+
+      <div class="hidden lg:flex items-center gap-6">
+        <div class="flex items-center space-x-6">
+          {menuItems.map((menu) => (
+            <div class="relative group py-4">
+              <a href={menu.path} class="flex items-center gap-1 text-sm font-medium text-gray-700 dark:text-gray-200 hover:text-blue-600 dark:hover:text-teal-400 transition-colors cursor-pointer">
+                {menu.title}
+                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
+              </a>
+              <div class="absolute left-0 top-full mt-[-8px] w-64 rounded-md shadow-lg bg-white dark:bg-slate-800 ring-1 ring-black ring-opacity-5 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 ease-in-out transform origin-top-left z-50">
+                <div class="py-2" role="menu" aria-orientation="vertical">
+                  {menu.links.map((link) => (
+                    <a href={link.url} class="block px-4 py-2 text-sm text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-slate-700 hover:text-blue-600 dark:hover:text-teal-400 transition-colors" role="menuitem">
+                      {link.name}
+                    </a>
+                  ))}
+                </div>
+              </div>
+            </div>
+          ))}
+        </div>
+
+        <div class="h-6 w-px bg-gray-300 dark:bg-slate-700"></div>
+
+        <div class="flex items-center gap-4">
+          <a href="https://www.linkedin.com/in/vasif-asadov1/" target="_blank" rel="noopener noreferrer" class="text-gray-500 hover:text-[#0a66c2] transition-colors" aria-label="LinkedIn">
+            <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path fill-rule="evenodd" d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z" clip-rule="evenodd" /></svg>
+          </a>
+          <a href="https://github.com/vasif-asadov1" target="_blank" rel="noopener noreferrer" class="text-gray-500 hover:text-gray-900 dark:hover:text-white transition-colors" aria-label="GitHub">
+            <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path fill-rule="evenodd" d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z" clip-rule="evenodd" /></svg>
+          </a>
+          <a href="https://www.youtube.com/@data_insights_vasif" target="_blank" rel="noopener noreferrer" class="text-gray-500 hover:text-[#ff0000] transition-colors" aria-label="YouTube">
+            <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path fill-rule="evenodd" d="M21.582 6.186a2.665 2.665 0 0 0-1.876-1.889C17.95 3.8 12 3.8 12 3.8s-5.95 0-7.706.497A2.665 2.665 0 0 0 2.418 6.186C2 7.953 2 12 2 12s0 4.047.418 5.814a2.665 2.665 0 0 0 1.876 1.889C6.05 20.2 12 20.2 12 20.2s5.95 0 7.706-.497a2.665 2.665 0 0 0 1.876-1.889C22 15.953 22 12 22 12s0-4.047-.418-5.814zM9.9 15.556V8.444L15.9 12l-6 3.556z" clip-rule="evenodd" /></svg>
+          </a>
+        </div>
+      </div>
+
+      <div class="flex lg:hidden">
+        <button id="mobile-menu-btn" type="button" class="text-gray-600 dark:text-gray-300 hover:text-teal-500 focus:outline-none" aria-label="Toggle menu">
+          <svg class="h-7 w-7" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+          </svg>
+        </button>
+      </div>
+
+    </div>
+  </div>
+
+  <div id="mobile-menu" class="hidden lg:hidden bg-white/95 dark:bg-slate-900/95 backdrop-blur-xl border-b border-gray-200 dark:border-slate-800 shadow-xl absolute w-full">
+    <div class="px-4 pt-4 pb-6 space-y-6 max-h-[80vh] overflow-y-auto">
+      {menuItems.map((menu) => (
+        <div class="border-b border-gray-100 dark:border-slate-800 pb-4 last:border-0">
+          <a href={menu.path} class="block text-base font-bold text-gray-900 dark:text-white mb-3 hover:text-teal-500 transition-colors">
+            {menu.title}
+          </a>
+          <div class="pl-4 space-y-3 border-l-2 border-teal-500/30">
+            {menu.links.map((link) => (
+              <a href={link.url} class="block text-sm text-gray-600 dark:text-gray-400 hover:text-teal-500 dark:hover:text-teal-400 transition-colors">
+                {link.name}
+              </a>
+            ))}
+          </div>
+        </div>
+      ))}
+      
+      <div class="flex items-center gap-6 pt-2">
+        <a href="https://www.linkedin.com/in/vasif-asadov1/" target="_blank" class="text-gray-500 hover:text-[#0a66c2]">
+          <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24"><path fill-rule="evenodd" d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z" clip-rule="evenodd" /></svg>
+        </a>
+        <a href="https://github.com/vasif-asadov1" target="_blank" class="text-gray-500 hover:text-white">
+          <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24"><path fill-rule="evenodd" d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z" clip-rule="evenodd" /></svg>
+        </a>
+        <a href="https://www.youtube.com/@data_insights_vasif" target="_blank" class="text-gray-500 hover:text-[#ff0000]">
+          <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24"><path fill-rule="evenodd" d="M21.582 6.186a2.665 2.665 0 0 0-1.876-1.889C17.95 3.8 12 3.8 12 3.8s-5.95 0-7.706.497A2.665 2.665 0 0 0 2.418 6.186C2 7.953 2 12 2 12s0 4.047.418 5.814a2.665 2.665 0 0 0 1.876 1.889C6.05 20.2 12 20.2 12 20.2s5.95 0 7.706-.497a2.665 2.665 0 0 0 1.876-1.889C22 15.953 22 12 22 12s0-4.047-.418-5.814zM9.9 15.556V8.444L15.9 12l-6 3.556z" clip-rule="evenodd" /></svg>
+        </a>
+      </div>
+    </div>
+  </div>
+</nav>
+
+<script>
+  // Mobil menünün açılıp kapanmasını sağlayan fonksiyon
+  const setupMobileMenu = () => {
+    const btn = document.getElementById('mobile-menu-btn');
+    const menu = document.getElementById('mobile-menu');
+    
+    // Astro View Transitions ile sayfa geçerken event listener'ların üst üste binmemesi için
+    const toggleMenu = () => {
+      menu?.classList.toggle('hidden');
+    };
+
+    btn?.removeEventListener('click', toggleMenu);
+    btn?.addEventListener('click', toggleMenu);
+  };
+
+  // Hem ilk yüklemede hem de Astro'nun sayfa geçişlerinde tetikle
+  setupMobileMenu();
+  document.addEventListener('astro:page-load', setupMobileMenu);
+</script>
+```
+
+</details>
+
+By following this algorithm, you can easily fill the content of your website and maintain a clear and organized structure for your projects and sections. This will help visitors to navigate through your website and find the information they are looking for more efficiently.
+
+## Starting Design Area
+
+After filling out the content with the ready projects (if you have any), you can start designing your website. Here your full control and strength will start. In this part, you can customize the design of your website according to your preferences. You can modify the existing components, create new ones, and apply different styles to make your website visually appealing and unique. You can also add interactive elements, animations, and other features to enhance the user experience. The design area is where you can truly make your website your own and showcase your creativity and design skills. You can experiment with different layouts, color schemes, typography, and other design elements to create a website that reflects your personal style and effectively communicates your content to your audience. 
+
+You can create even **shortcodes** which are reusable components that can be easily inserted into your markdown files. For example, you can create a shortcode for a project card that includes the project title, description, and relevant tags. This way, you can maintain a consistent design across all your project pages and easily update the design of all project cards by modifying the shortcode component. Shortcodes can help you save time and effort in designing and maintaining your website while ensuring a cohesive and professional look throughout your content.
+
+The next sections will focus on my design choices and the components I created for my website. I will explain the design decisions I made, the components I built, and how they contribute to the overall look and feel of my website. This will provide insights into my design process and the thought behind the visual elements of my site.
+
+
+
+
+
+
+
+
+
+
 
 
 
