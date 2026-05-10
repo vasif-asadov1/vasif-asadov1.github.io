@@ -166,6 +166,8 @@ print("="*50)
 print(cols_to_drop)
 ```
 
+</details>
+
 
 
 **SHAP Feature Importance Analysis Results**
