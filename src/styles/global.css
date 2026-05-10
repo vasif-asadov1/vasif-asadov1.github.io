@@ -1142,3 +1142,27 @@ pre {
   font-weight: 700;
   text-decoration: none !important;
 }
+
+/* 1. TÜM SAYFAYI YATAY TAŞMALARA KARŞI KİLİTLE */
+html, body {
+  max-width: 100vw;
+  overflow-x: hidden;
+}
+
+/* 2. UZUN KOD BLOKLARI VE FORMÜLLER SAYFAYI ESNETMESİN, KENDİ İÇİNDE SCROLL OLSUN */
+.prose pre, 
+.katex-display,
+table {
+  max-width: 100%;
+  overflow-x: auto !important;
+  /* Mobilde kaydırırken daha akıcı olması için: */
+  -webkit-overflow-scrolling: touch; 
+}
+
+/* Uzun linkler veya kelimeler kutunun dışına taşmasın, alt satıra kırılsın */
+.prose p, 
+.prose li, 
+.prose a {
+  word-wrap: break-word;
+  overflow-wrap: break-word;
+}
