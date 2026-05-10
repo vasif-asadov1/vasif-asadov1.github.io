@@ -3,6 +3,8 @@ layout: ../../../layouts/ArticleLayout.astro
 title: Technical Articles about Linux
 description: A collection of technical articles delving into Linux system administration, command-line tools, scripting, and performance optimization.
 tags: ["Linux", "System Administration", "Distros", "Terminal"]
+hide_prev: true
+hide_next: true
 ---
 
 In this section, I have compiled a collection of technical articles that delve into various aspects of Linux — including system administration, command-line tools, scripting, and performance optimization. Each article is meticulously researched to offer clear explanations, step-by-step guides, and real-world examples to help you enhance your Linux skills and make the most out of your experience. Whether you're just getting started or seeking advanced techniques, these articles will serve as valuable resources throughout your Linux journey.

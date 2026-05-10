@@ -1,6 +1,7 @@
 ---
 layout: ../../../layouts/ArticleLayout.astro
 title:  Exploratory Data Analysis for Customer Churn Prediction
+description: This article details the exploratory data analysis phase of the Customer Churn Prediction project, focusing on understanding the dataset, identifying patterns, and uncovering insights that can inform our modeling decisions. It covers the initial setup, data wrangling, and various visualization techniques to explore the factors contributing to customer churn.
 ---
 
 

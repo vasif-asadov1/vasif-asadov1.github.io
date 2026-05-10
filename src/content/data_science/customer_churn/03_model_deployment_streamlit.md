@@ -1,6 +1,9 @@
 ---
 layout: ../../../layouts/ArticleLayout.astro
 title:  Model Deployment with Streamlit for Customer Churn Prediction
+hide_next: true
+hide_prev: false
+description: This article details the model deployment phase of the Customer Churn Prediction project, focusing on building an automated machine learning pipeline using Streamlit. It covers the initial setup, data preprocessing automation with ColumnTransformer, model building with pipelines, and the creation of an interactive web application for real-time churn prediction.
 ---
 
 

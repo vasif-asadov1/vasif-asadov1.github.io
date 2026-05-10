@@ -1,6 +1,7 @@
 ---
 layout: ../../../layouts/ArticleLayout.astro
 title:      Dash Core Components Overview
+description: This article provides an overview of the core components in Dash, including buttons, dropdowns, input fields, sliders, and more. It explains how to use these components to create interactive web applications and provides examples of how to implement them in your Dash projects.
 ---
 
 ## Introduction

@@ -1,6 +1,7 @@
 ---
 layout: ../../../layouts/ArticleLayout.astro
 title:  Dash HTML Components Overview
+description: This article provides an overview of Dash HTML Components, a set of pre-built components that allow you to create HTML elements in your Dash applications. It covers commonly used components such as Div, Heading, Paragraph, List, Table, Image, Link, and more, along with examples of how to use them and their attributes.
 ---
 
 

@@ -2,6 +2,8 @@
 layout: ../../../layouts/ArticleLayout.astro
 title: Default Risk Prediction with XGBoost and SHAP - Machine Learning Phase
 description:  This article details the machine learning phase of the Home Credit Risk Analysis project, focusing on building a predictive model using XGBoost and analyzing feature importance with SHAP. It covers the initial setup, data validation, baseline modeling, and feature importance analysis, providing insights into the model's performance and interpretability.
+hide_next: true
+hide_prev: false
 ---
 
 

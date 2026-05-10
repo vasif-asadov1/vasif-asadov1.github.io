@@ -3,6 +3,8 @@ layout: ../../../layouts/ArticleLayout.astro
 title: 1. Problem Description
 description: Business problem and dataset overview.
 tags: ["SQL", "Business Intelligence"]
+hide_prev: true
+hide_next: false
 ---
 
 

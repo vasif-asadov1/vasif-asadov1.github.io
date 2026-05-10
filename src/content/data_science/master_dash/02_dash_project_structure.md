@@ -1,6 +1,7 @@
 ---
 layout: ../../../layouts/ArticleLayout.astro
 title:  Dash Project Structure
+description: This article provides an overview of the recommended project structure for a Dash application, including how to set up a virtual environment and install the necessary dependencies. It also covers best practices for organizing your Dash project to ensure maintainability and scalability as your application grows in complexity.
 ---
 
 ## Introduction

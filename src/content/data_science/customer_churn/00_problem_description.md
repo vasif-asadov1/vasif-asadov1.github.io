@@ -1,6 +1,10 @@
 ---
 layout: ../../../layouts/ArticleLayout.astro
 title:  Customer Churn Prediction Problem Description
+hide_prev: true
+hide_next: false
+description: This article provides a detailed problem description for the Customer Churn Prediction project, outlining the tasks assigned by the company, the structure of the analysis, the tools and skills used, acknowledgements, and references.
+tags: ["SQL", "Tableau", "Data Analysis", "Data Science", "Machine Learning", "XGBoost", "LightGBM", "Logistic Regression", "SHAP", "Streamlit", "GitHub Pages"]
 ---
 
 

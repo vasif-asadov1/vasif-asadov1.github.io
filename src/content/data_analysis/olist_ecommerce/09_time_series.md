@@ -2,6 +2,8 @@
 layout: ../../../layouts/ArticleLayout.astro
 title:  Times Series Analysis of Orders and Sales Performance
 description: This section will  explore the time series analysis of orders and sales performance for Olist, including month-over-month growth rates, seasonality effects, and the distribution of order volume by day and hour to identify key trends and patterns in customer behavior.
+hide_next: true
+hide_prev: false
 ---
 
 

@@ -2,6 +2,8 @@
 layout: ../../../layouts/ArticleLayout.astro
 title: 7. Executive Dashboard
 description: Summary of key insights for executive stakeholders.
+hide_next: true
+hide_prev: false
 ---
 
 

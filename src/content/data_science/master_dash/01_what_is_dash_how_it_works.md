@@ -1,6 +1,7 @@
 ---
 layout: ../../../layouts/ArticleLayout.astro
 title:  What is Dash and How it Works?
+description: This article provides an introduction to Dash, a powerful Python framework for building analytical web applications. It explains what Dash is, how it works, and how it differs from traditional BI tools. The article also covers how to share your Dash applications and provides a conclusion summarizing the key points covered.
 ---
 
 ## What is Dash?

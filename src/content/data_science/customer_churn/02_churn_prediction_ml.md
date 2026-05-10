@@ -1,6 +1,7 @@
 ---
 layout: ../../../layouts/ArticleLayout.astro
 title:  Customer Churn Prediction with Machine Learning
+description: This article details the machine learning phase of the Customer Churn Prediction project, focusing on building and evaluating various classification models to predict customer churn. It covers the initial setup, train-test split, model development, and evaluation using multiple performance metrics.
 ---
 
 

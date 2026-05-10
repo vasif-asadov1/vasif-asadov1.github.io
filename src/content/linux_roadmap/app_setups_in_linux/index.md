@@ -3,6 +3,8 @@ layout: ../../../layouts/ArticleLayout.astro
 title: Application Setups in Linux
 description: Step-by-step configuration guides for tools and environments on Linux — from SQL engines to Python environments and code editors.
 tags: ["Linux", "Setup", "Configuration", "Workflow"]
+hide_prev: true
+hide_next: true
 ---
 
 On our daily workflow, we often encounter various applications that we need to set up and configure on our Linux systems. This can range from converting file formats, to setting up development environments, to configuring multimedia tools. I have listed lots of application setups that I have done on my Linux system, along with step-by-step guides and tips to help you get the most out of your Linux experience. Whether you're a beginner looking to set up your first application or an experienced user seeking to optimize your workflow, these guides will provide you with the necessary information and resources to successfully set up and configure a wide range of applications on your Linux system.

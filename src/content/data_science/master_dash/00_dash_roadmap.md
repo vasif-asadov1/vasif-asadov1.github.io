@@ -1,6 +1,10 @@
 ---
 layout: ../../../layouts/ArticleLayout.astro
 title:  Dash Mastery Roadmap
+hide_prev: true
+hide_next: false
+description: This article provides a comprehensive roadmap for mastering Dash, a powerful Python framework for building analytical web applications. The roadmap is structured into 12 phases, covering everything from Dash fundamentals and layout mastery to advanced techniques like AI integration and production deployment. Each phase includes specific topics and lessons designed to guide learners through the process of becoming proficient in Dash and creating powerful interactive applications.
+tags: ["Dash", "Python", "Data Visualization", "Web Development", "Plotly", "Interactive Dashboards", "AI Integration", "Production Deployment"]
 ---
 
 # Introduction

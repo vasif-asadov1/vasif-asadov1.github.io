@@ -19,7 +19,7 @@ export async function getStaticPaths() {
 
 const { entry, next, prev } = Astro.props;
 
-// İşte hata aldığımız kısmı Astro v5 standartlarına göre değiştirdik:
+// Astro v5 standartlarına göre render işlemi
 const { Content, headings } = await render(entry);
 ---
 
@@ -28,26 +28,7 @@ const { Content, headings } = await render(entry);
   headings={headings} 
   currentId={entry.id} 
   collectionName="data_analysis"
->
+  next={next}  prev={prev}  >
   <Content />
-
-  {/* SENIOR DOKUNUŞU: Sadece ID'si 'index' OLMAYAN sayfalarda bu butonları göster */}
-  {entry.id !== 'index' && (
-    <div class="mt-16 pt-8 border-t border-gray-200 dark:border-slate-800 flex justify-between items-center not-prose">
-      {prev ? (
-        <a href={`/data-analysis/${prev.id === 'index' ? '' : prev.id}`} class="flex flex-col gap-1 group">
-          <span class="text-xs text-gray-500 uppercase tracking-wider">Previous</span>
-          <span class="text-blue-600 dark:text-blue-400 font-medium group-hover:underline">← {prev.data.title}</span>
-        </a>
-      ) : <div></div>}
-
-      {next ? (
-        <a href={`/data-analysis/${next.id === 'index' ? '' : next.id}`} class="flex flex-col gap-1 items-end group text-right">
-          <span class="text-xs text-gray-500 uppercase tracking-wider">Next</span>
-          <span class="text-blue-600 dark:text-blue-400 font-medium group-hover:underline">{next.data.title} →</span>
-        </a>
-      ) : <div></div>}
-    </div>
-  )}
 
 </ArticleLayout>

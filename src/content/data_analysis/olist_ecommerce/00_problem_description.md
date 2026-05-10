@@ -3,6 +3,8 @@ layout: ../../../layouts/ArticleLayout.astro
 title: Problem Description - Olist E-Commerce Data Analysis
 description: This article provides a detailed problem description for the Olist E-Commerce Data Analysis project, outlining the tasks assigned by the company, the structure of the analysis, the tools and skills used, acknowledgements, and references.
 tags: ["SQL", "Tableau", "Data Analysis", "Data Cleaning", "Data Visualization", "Business Intelligence", "Machine Learning", "Streamlit", "GitHub Pages"]  
+hide_prev: true
+hide_next: false
 ---
 
 
