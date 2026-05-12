@@ -227,8 +227,7 @@ import MainLayout from '../layouts/MainLayout.astro';
 
     </div>
   </section>
-
-  <section class="mb-32">
+<section class="mb-32">
     <div class="flex justify-between items-end mb-10 border-b border-slate-800 pb-4">
       <h3 class="text-3xl font-bold text-white tracking-tight">Certifications</h3>
     </div>
@@ -236,20 +235,31 @@ import MainLayout from '../layouts/MainLayout.astro';
     <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
       
       {[
-        { title: "Microsoft Certified: Power BI Analyst", desc: "PL-300 Associate Certificate", link: "/certificates/ms_powerbi.pdf", color: "teal" },
-        { title: "Full Stack Data Scientist", desc: "Data Science Academy Certificate", link: "/certificates/data_science_academy_certificate.pdf", color: "blue" },
-        { title: "Talent Report Snapshot", desc: "One-Page Performance Summary", link: "/certificates/talent_report_snapshot.pdf", color: "purple" },
-        { title: "Data Talent Report", desc: "Full Technical & Soft Skill Evaluation", link: "/certificates/vasif_asadov_talent_report.pdf", color: "cyan" },
-        { title: "Advanced SQL Certification", desc: "BTK Academy Professional Development", link: "/certificates/sql_certificate.pdf", color: "emerald" },
-        { title: "TOEFL iBT Score Report", desc: "English Proficiency (C1 Level)", link: "/certificates/vasif_asadov_toefl.pdf", color: "indigo" }
+        { title: "Microsoft Certified: Power BI Analyst", desc: "PL-300 Associate Certificate", link: "/certificates/ms_powerbi.pdf" },
+        { title: "Full Stack Data Scientist", desc: "Data Science Academy Certificate", link: "/certificates/data_science_academy_certificate.pdf" },
+        { title: "Talent Report Snapshot", desc: "One-Page Performance Summary", link: "/certificates/talent_report_snapshot.pdf" },
+        { title: "Data Talent Report", desc: "Full Technical & Soft Skill Evaluation", link: "/certificates/vasif_asadov_talent_report.pdf" },
+        { title: "Advanced SQL Certification", desc: "BTK Academy Professional Development", link: "/certificates/sql_certificate.pdf" },
+        { title: "TOEFL iBT Score Report", desc: "English Proficiency (C1 Level)", link: "/certificates/vasif_asadov_toefl.pdf" }
       ].map((cert) => (
-        <a href={cert.link} target="_blank" class="group flex items-center gap-4 p-5 bg-slate-800/40 border border-slate-700/50 rounded-2xl hover:border-teal-500/50 hover:bg-slate-800 transition-all shadow-sm hover:shadow-md hover:-translate-y-1">
+        <a href={cert.link} target="_blank" 
+           class="group grid grid-cols-[auto_1fr] gap-4 p-5 bg-slate-800/40 border border-slate-700/50 rounded-2xl hover:border-teal-500/50 hover:bg-slate-800 transition-all shadow-sm hover:shadow-md hover:-translate-y-1 items-start">
+          
+          {/* İkon Konteynırı - Küçülmemesi için shrink-0 ekledik */}
           <div class="w-12 h-12 bg-slate-900 rounded-full flex items-center justify-center shrink-0 group-hover:scale-110 transition-transform">
-            <svg class="w-6 h-6 text-teal-500" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" /></svg>
+            <svg class="w-6 h-6 text-teal-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+            </svg>
           </div>
-          <div>
-            <strong class="block text-white group-hover:text-teal-500 transition-colors">{cert.title}</strong>
-            <span class="text-sm text-slate-400 mt-1">{cert.desc}</span>
+
+          {/* Metin Alanı - Taşmaları önlemek için min-w-0 ekledik */}
+          <div class="min-w-0">
+            <strong class="block text-white group-hover:text-teal-400 transition-colors truncate sm:whitespace-normal break-words leading-tight">
+                {cert.title}
+            </strong>
+            <span class="block text-sm text-slate-400 mt-1 leading-snug">
+                {cert.desc}
+            </span>
           </div>
         </a>
       ))}
