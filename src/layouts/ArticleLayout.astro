@@ -22,7 +22,7 @@ const finalNextTitle = frontmatter.custom_next_title || (next ? next.data.title 
 <MainLayout title={frontmatter.title}>
   <div class="flex flex-col lg:flex-row gap-12">
     
-    <article class="w-full lg:w-3/4 prose prose-slate prose-lg dark:prose-invert max-w-none">
+    <article class="w-full lg:w-3/4 prose prose-invert max-w-none">
       <header class="mb-10">
         <h1 class="text-4xl font-extrabold mb-4">{frontmatter.title}</h1>
         {frontmatter.description && <p class="text-xl text-gray-500">{frontmatter.description}</p>}
