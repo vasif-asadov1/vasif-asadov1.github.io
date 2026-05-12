@@ -33,6 +33,27 @@ import CodeTabs from '../../../components/CodeTabs.astro';
 import ProImage from '../../../components/ProImage.astro';
 import MetricsGrid from '../../../components/MetricsGrid.astro';
 import Metric from '../../../components/Metric.astro';
+import LinuxTerminal from '../../../components/LinuxTerminal.astro';
+
+
+<LinuxTerminal>
+```bash
+sudo pacman -Syu
+yay -S duckdb-bin
+```
+</LinuxTerminal>
+
+
+<LinuxTerminal title="vasif@cachyos: ~/projects/telco-churn">
+```python
+import duckdb
+
+conn = duckdb.connect('churn_data.db')
+results = conn.execute("SELECT * FROM applications").df()
+```
+</LinuxTerminal>  
+
+
 
 
 
@@ -86,28 +107,6 @@ import Metric from '../../../components/Metric.astro';
   />
 </MetricsGrid>
 
-
-
-We built the interface using Streamlit to make the XGBoost predictions accessible to the business team.
-
-<ProImage 
-  src="/images/profile.png" 
-  alt="Telco Churn App" 
-  caption="<b>Figure 1:</b> Dashboard taking up 50% of the screen." 
-  width="50%" 
-/>
-
-
-<ProImage 
-  src="/images/profile.png" 
-  width="800px" 
-  height="600px" 
-/>
-
-
-<ProImage 
-  src="/images/profile.png" 
-/>
 
 
 

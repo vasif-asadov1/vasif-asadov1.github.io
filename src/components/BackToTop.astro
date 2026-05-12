@@ -1,0 +1,51 @@
+---
+// src/components/BackToTop.astro
+---
+
+{/* Başlangıçta görünmez (opacity-0) ve tıklanamaz (pointer-events-none), aşağıda duruyor (translate-y-10) */}
+<button 
+  id="back-to-top" 
+  aria-label="Back to top"
+  class="fixed bottom-6 right-6 lg:bottom-10 lg:right-10 z-50 p-3 rounded-xl bg-slate-800/80 border border-teal-500/30 text-teal-400 backdrop-blur-md opacity-0 pointer-events-none translate-y-10 transition-all duration-500 ease-out hover:bg-teal-500/20 hover:border-teal-500 hover:scale-110 hover:shadow-[0_0_20px_rgba(45,212,191,0.4)]"
+>
+  <svg class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke-width="2.5" stroke="currentColor">
+    <path stroke-linecap="round" stroke-linejoin="round" d="M4.5 15.75l7.5-7.5 7.5 7.5" />
+  </svg>
+</button>
+
+<script>
+  function setupBackToTop() {
+    const button = document.getElementById('back-to-top');
+    if (!button) return;
+
+    // Sayfa kaydırıldıkça butonun görünürlüğünü ayarla
+    const toggleVisibility = () => {
+      // Sayfa 400 pikselden fazla aşağı kaydırıldıysa butonu göster
+      if (window.scrollY > 400) {
+        button.classList.remove('opacity-0', 'pointer-events-none', 'translate-y-10');
+        button.classList.add('opacity-100', 'pointer-events-auto', 'translate-y-0');
+      } else {
+        // Yukarıdaysak gizle
+        button.classList.add('opacity-0', 'pointer-events-none', 'translate-y-10');
+        button.classList.remove('opacity-100', 'pointer-events-auto', 'translate-y-0');
+      }
+    };
+
+    // Butona tıklandığında yumuşak (smooth) bir şekilde en tepeye fırla
+    button.addEventListener('click', () => {
+      window.scrollTo({
+        top: 0,
+        behavior: 'smooth'
+      });
+    });
+
+    // Scroll olayını dinle
+    window.addEventListener('scroll', toggleVisibility);
+    // İlk yüklendiğinde pozisyonu kontrol et (belki sayfa zaten aşağıdadır)
+    toggleVisibility();
+  }
+
+  // Astro'nun hızlı sayfa geçişleri için olay dinleyicileri
+  document.addEventListener('astro:page-load', setupBackToTop);
+  document.addEventListener('DOMContentLoaded', setupBackToTop);
+</script>

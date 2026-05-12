@@ -1533,3 +1533,38 @@ table {
 .prose .metric-card.purple { border-top-color: #c084fc; }
 .prose .metric-card.purple:hover { box-shadow: 0 10px 25px -5px rgba(192, 132, 252, 0.25); }
 .prose .metric-card.purple .metric-value { color: #c084fc !important; text-shadow: 0 0 15px rgba(192, 132, 252, 0.2); }
+
+
+
+
+/* ═════════════════════════════════════════════════
+   VURUŞ 1: CYBER SCROLLBAR
+══════════════════════════════════════════════════ */
+/* Webkit tabanlı tarayıcılar için (Chrome, Edge, Safari) */
+::-webkit-scrollbar {
+  width: 8px; /* İnce, zarif bir genişlik */
+  height: 8px; /* Yatay kaydırma için (örneğin kod bloklarında) */
+}
+
+/* Çubuğun arka planı (Karanlık tema ile uyumlu) */
+::-webkit-scrollbar-track {
+  background: #0f172a; /* Tailwind bg-slate-900 */
+}
+
+/* Çubuğun kendisi (kaydırdığımız tutamaç) */
+::-webkit-scrollbar-thumb {
+  background: #334155; /* Tailwind bg-slate-700 */
+  border-radius: 4px;
+}
+
+/* Farenin ucuyla tutamaca dokunulduğunda (Hover) */
+::-webkit-scrollbar-thumb:hover {
+  background: #2dd4bf; /* Tailwind text-teal-400 (O efsanevi turkuaz parlama) */
+  box-shadow: 0 0 10px rgba(45, 212, 191, 0.5); /* Hafif bir neon gölge */
+}
+
+
+
+
+
+
