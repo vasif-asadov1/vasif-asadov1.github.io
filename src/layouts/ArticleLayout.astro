@@ -1,7 +1,6 @@
 ---
 import MainLayout from './MainLayout.astro';
 import ProjectNavigation from '../components/ProjectNavigation.astro';
-import CyberBackground from '../components/CyberBackground.astro'; // SİBER YAĞMUR İÇE AKTARILDI
 import '../styles/global.css';
 
 // 1. next ve prev proplarını içeri alıyoruz (artık [...slug].astro'dan geliyor)
@@ -21,11 +20,7 @@ const finalNextTitle = frontmatter.custom_next_title || (next ? next.data.title 
 ---
 
 <MainLayout title={frontmatter.title}>
-  
-  {/* EFSANEVİ ARKA PLAN BURADA ÇALIŞIYOR */}
-  <CyberBackground />
-
-  <div class="flex flex-col lg:flex-row gap-12 relative z-10">
+  <div class="flex flex-col lg:flex-row gap-12">
     
     <article class="w-full lg:w-3/4 prose prose-slate prose-lg dark:prose-invert max-w-none">
       <header class="mb-10">
@@ -79,7 +74,7 @@ const finalNextTitle = frontmatter.custom_next_title || (next ? next.data.title 
         </div>
         
       </div>
-    </article>
+      </article>
 
     <aside class="hidden xl:block w-72 shrink-0">
       <div class="sticky top-24 max-h-[calc(100vh-8rem)] overflow-y-auto toc-scrollbar pr-4">
@@ -110,7 +105,7 @@ const finalNextTitle = frontmatter.custom_next_title || (next ? next.data.title 
   codeBlocks.forEach((block) => {
     const button = document.createElement('button');
     button.innerText = 'Copy';
-    button.className = 'absolute right-2 top-2 px-2 py-1 text-xs bg-slate-700 text-white rounded opacity-0 group-hover:opacity-100 transition-opacity z-20';
+    button.className = 'absolute right-2 top-2 px-2 py-1 text-xs bg-slate-700 text-white rounded opacity-0 group-hover:opacity-100 transition-opacity';
     
     block.classList.add('group');
     block.appendChild(button);
@@ -125,6 +120,8 @@ const finalNextTitle = frontmatter.custom_next_title || (next ? next.data.title 
     });
   });
 </script>
+
+
 
 <script>
   function setupTOC() {
