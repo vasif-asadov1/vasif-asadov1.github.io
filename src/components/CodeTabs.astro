@@ -1,0 +1,44 @@
+---
+// src/components/CodeTabs.astro
+const { tabs = [] } = Astro.props;
+---
+
+<div class="code-tabs-wrapper">
+  <div class="tab-headers">
+    {tabs.map((tab, index) => (
+      <button class={`tab-btn ${index === 0 ? 'active' : ''}`} data-index={index}>
+        {tab}
+      </button>
+    ))}
+  </div>
+
+  <div class="tab-contents">
+    {/* SENIOR DOKUNUŞU: Astro slot isimlerinin statik olmasını ister. Biz de 5 sekmeye kadar destek veren statik render yapıyoruz. */}
+    {tabs.length > 0 && <div class="tab-panel active" data-index="0"><slot name="tab-0" /></div>}
+    {tabs.length > 1 && <div class="tab-panel" data-index="1"><slot name="tab-1" /></div>}
+    {tabs.length > 2 && <div class="tab-panel" data-index="2"><slot name="tab-2" /></div>}
+    {tabs.length > 3 && <div class="tab-panel" data-index="3"><slot name="tab-3" /></div>}
+    {tabs.length > 4 && <div class="tab-panel" data-index="4"><slot name="tab-4" /></div>}
+  </div>
+</div>
+
+<script>
+  // Sekmeler arası geçişi sağlayan JavaScript kodumuz
+  document.querySelectorAll('.code-tabs-wrapper').forEach(wrapper => {
+    const buttons = wrapper.querySelectorAll('.tab-btn');
+    const panels = wrapper.querySelectorAll('.tab-panel');
+
+    buttons.forEach(btn => {
+      btn.addEventListener('click', () => {
+        // Tüm aktif sınıfları temizle
+        buttons.forEach(b => b.classList.remove('active'));
+        panels.forEach(p => p.classList.remove('active'));
+
+        // Tıklanan butona ve ilgili panele aktif sınıfını ekle
+        btn.classList.add('active');
+        const index = btn.getAttribute('data-index');
+        wrapper.querySelector(`.tab-panel[data-index="${index}"]`).classList.add('active');
+      });
+    });
+  });
+</script>

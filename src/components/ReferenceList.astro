@@ -1,0 +1,14 @@
+---
+// src/components/ReferenceList.astro
+const { links = [] } = Astro.props;
+---
+
+<div class="reference-list">
+  {links.map((link) => (
+    <div class="ref-item">
+      <a href={link.url} target="_blank" rel="noopener noreferrer" class="ref-link">
+        {link.title}
+      </a>
+    </div>
+  ))}
+</div>

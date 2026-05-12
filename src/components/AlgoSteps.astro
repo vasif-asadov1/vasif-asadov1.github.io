@@ -1,0 +1,10 @@
+---
+// src/components/AlgoSteps.astro
+const { steps = [] } = Astro.props;
+---
+
+<ol class="algo-steps">
+  {steps.map((step) => (
+    <li set:html={step} />
+  ))}
+</ol>

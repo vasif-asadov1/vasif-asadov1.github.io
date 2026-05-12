@@ -1,0 +1,26 @@
+---
+// src/components/Card.astro
+const { title, desc, link = "#", color = "teal", tags = "" } = Astro.props;
+
+// Eğer tag girildiyse diziye çevir, girilmediyse boş dizi kalsın
+const tagList = tags ? tags.split(',').map(tag => tag.trim()).filter(tag => tag.length > 0) : [];
+---
+
+<a href={link} class={`md-card ${color}`}>
+  {/* Eğer tagList içinde eleman varsa (yani tags="" boş değilse) etiketleri bas */}
+  {tagList.length > 0 && (
+    <div class="md-tags">
+      {tagList.map(tag => {
+        let cssClass = tag.toLowerCase().replace(/\s+/g, '-').replace(/[^a-z0-9\-]/g, '');
+        if (cssClass === 'power-bi') cssClass = 'powerbi';
+        if (cssClass === 'machine-learning') cssClass = 'ml';
+        if (cssClass === 'deep-learning') cssClass = 'dl';
+        
+        return <span class={`md-tag tag-${cssClass}`}>{tag}</span>
+      })}
+    </div>
+  )}
+  
+  <h4 class="md-card-title">{title}</h4>
+  <p class="md-card-desc">{desc}</p>
+</a>

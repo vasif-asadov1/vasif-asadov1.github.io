@@ -1,0 +1,9 @@
+---
+// src/components/Citation.astro
+const { author } = Astro.props;
+---
+
+<div class="md-citation">
+  <slot />
+  {author && <span class="citation-author">{author}</span>}
+</div>

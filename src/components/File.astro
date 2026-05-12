@@ -1,0 +1,7 @@
+---
+// src/components/File.astro
+const { name, comment, active = false } = Astro.props;
+---
+<div class={`file ${active ? 'active' : ''}`}>
+  {name} {comment && <span class="tree-comment">{comment}</span>}
+</div>

@@ -1,0 +1,33 @@
+---
+// src/components/ArticleCard.astro
+
+// Dışarıdan alacağımız veriler (Senin title, tags, description dediklerin)
+const { 
+  title, 
+  desc, 
+  link, 
+  tags = "", 
+  color = "teal", 
+  readMore = "Read Full Article" 
+} = Astro.props;
+
+// Gelen "SQL, DuckDB, Feature Eng" gibi virgüllü metni otomatik diziye çeviriyoruz
+const tagList = tags.split(',').map(tag => tag.trim()).filter(tag => tag.length > 0);
+---
+
+<a href={link} class={`article-card ${color}`}>
+  <h4 class="article-title">{title}</h4>
+  <p class="article-desc">{desc}</p>
+  
+  <div class="article-footer">
+    <div class="md-tags">
+      {/* Etiketleri otomatik olarak span'lere çevirip renk class'larını veriyoruz */}
+      {tagList.map(tag => (
+        <span class={`md-tag tag-${tag.toLowerCase().replace(/\s+/g, '-')}`}>
+          {tag}
+        </span>
+      ))}
+    </div>
+    <span class="article-read-more">{readMore}</span>
+  </div>
+</a>

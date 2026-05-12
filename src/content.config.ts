@@ -20,27 +20,27 @@ const commonSchema = z.object({
 export const collections = {
   // 1. Data Analysis
   'data_analysis': defineCollection({
-    loader: glob({ pattern: "**/*.md", base: "./src/content/data_analysis" }),
+    loader: glob({ pattern: "**/*.{md,mdx}", base: "./src/content/data_analysis" }),
     schema: commonSchema,
   }),
   // 2. Data Science
   'data_science': defineCollection({
-    loader: glob({ pattern: "**/*.md", base: "./src/content/data_science" }),
+    loader: glob({ pattern: "**/*.{md,mdx}", base: "./src/content/data_science" }),
     schema: commonSchema,
   }),
   // 3. Data Articles
   'data_articles': defineCollection({
-    loader: glob({ pattern: "**/*.md", base: "./src/content/data_articles" }),
+    loader: glob({ pattern: "**/*.{md,mdx}", base: "./src/content/data_articles" }),
     schema: commonSchema,
   }),
   // 4. Linux Roadmap
   'linux_roadmap': defineCollection({
-    loader: glob({ pattern: "**/*.md", base: "./src/content/linux_roadmap" }),
+    loader: glob({ pattern: "**/*.{md,mdx}", base: "./src/content/linux_roadmap" }),
     schema: commonSchema,
   }),
   // 5. Master Thesis
   'master_thesis': defineCollection({
-    loader: glob({ pattern: "**/*.md", base: "./src/content/master_thesis" }),
+    loader: glob({ pattern: "**/*.{md,mdx}", base: "./src/content/master_thesis" }),
     schema: commonSchema,
   }),
 };

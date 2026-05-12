@@ -1,6 +1,23 @@
 @import "tailwindcss";
 @plugin "@tailwindcss/typography";
 
+
+
+/* ═════════════════════════════════════════════════
+   GLOBAL HEADING RESET (İSTENMEYEN ÇİZGİLERİ KALDIRIR)
+══════════════════════════════════════════════════ */
+.prose h1, 
+.prose h2, 
+.prose h3, 
+.prose h4, 
+.prose h5, 
+.prose h6 {
+  border-left: none !important;
+  padding-left: 0 !important;
+  margin-left: 0 !important;
+}
+
+
 /* Markdown İçerik Stilleri */
 .prose table {
   width: 100%;
@@ -850,6 +867,14 @@ pre {
   opacity: 0.7; /* Turkuaz rengi de biraz kıstık ki parlamasın */
 }
 
+/* ETKİLEŞİMLİ KLASÖR AYARLARI (Otomatik Girinti ve Tıklanabilirlik) */
+.prose .file-tree details summary::-webkit-details-marker { display: none; }
+.prose .file-tree details summary { list-style: none; cursor: pointer; }
+.prose .file-tree .tree-contents {
+  margin-left: 0.5rem; /* Klasör ikonunun tam altına hizalar */
+  border-left: 1px solid rgba(255, 255, 255, 0.08);
+  padding-left: 1rem;
+}
 
 /* ═════════════════════════════════════════════════
    TECH QUICK GLANCE (PROJECT SPEC SUMMARY)
@@ -1061,6 +1086,7 @@ pre {
   box-shadow: 0 0 10px rgba(45, 212, 191, 0.2);
 }
 
+
 /* ═════════════════════════════════════════════════
    PROFESSIONAL REFERENCE & RESOURCE LINKS
 ══════════════════════════════════════════════════ */
@@ -1166,3 +1192,344 @@ table {
   word-wrap: break-word;
   overflow-wrap: break-word;
 }
+
+
+/* ═════════════════════════════════════════════════
+   ARTICLE LIST VIEW (TRANSPARENT TINTED BACKGROUNDS)
+══════════════════════════════════════════════════ */
+.prose .article-list {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  margin: 2.5rem 0;
+}
+
+.prose .article-card {
+  display: flex;
+  flex-direction: column;
+  padding: 1.75rem;
+  
+  /* İŞTE SİHİR BURADA: Arka plan ve çerçeve artık dinamik saydam renklerde! */
+  background: var(--theme-bg);
+  border: 1px solid var(--theme-border);
+  border-left: 4px solid var(--theme-color); 
+  
+  border-radius: 1rem;
+  text-decoration: none !important;
+  transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
+  
+  /* Varsayılan Renk (Turkuaz - Herhangi bir class yazılmazsa bu çalışır) */
+  --theme-color: #2dd4bf;
+  --theme-bg: rgba(45, 212, 191, 0.05); /* İçinin saydam turkuaz dolgusu */
+  --theme-bg-hover: rgba(45, 212, 191, 0.12); /* Fareyle gelince biraz daha koyulaşır */
+  --theme-border: rgba(45, 212, 191, 0.1); /* Dış çerçevesi bile turkuazımsı */
+}
+
+/* Hover Animasyonları */
+.prose .article-card:hover {
+  background: var(--theme-bg-hover);
+  transform: translateY(-3px);
+  border-color: var(--theme-color);
+  box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.3);
+}
+
+/* Başlık */
+.prose .article-title {
+  border-left: none !important; 
+  padding-left: 0 !important;   
+  font-size: 1.25rem !important;
+  font-weight: 800 !important;
+  color: #f8fafc !important;
+  margin: 0 0 0.75rem 0 !important;
+  transition: color 0.3s ease;
+}
+
+/* Açıklama */
+.prose .article-desc {
+  font-size: 0.95rem !important;
+  line-height: 1.6 !important;
+  color: #94a3b8 !important;
+  margin: 0 0 1.5rem 0 !important;
+}
+
+/* Kartın Alt Kısmı (Tags Sol, Link Sağ) */
+.prose .article-footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: auto;
+  border-top: 1px solid rgba(255, 255, 255, 0.05);
+  padding-top: 1.25rem;
+}
+
+.prose .article-footer .md-tags {
+  margin-bottom: 0 !important;
+}
+
+/* Read Full Article Yazısı */
+.prose .article-read-more {
+  font-size: 0.85rem;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: #64748b;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  transition: color 0.3s ease;
+}
+
+.prose .article-read-more::after {
+  content: '→';
+  font-size: 1rem;
+  transition: transform 0.3s ease;
+}
+
+/* ════ KARTIN ÜZERİNE GELİNDİĞİNDE (HOVER) OLACAKLAR ════ */
+.prose .article-card:hover .article-read-more {
+  color: var(--theme-color);
+}
+.prose .article-card:hover .article-read-more::after {
+  transform: translateX(5px);
+}
+.prose .article-card:hover .article-title {
+  color: var(--theme-color) !important;
+}
+
+/* ════ KİŞİSELLEŞTİRİLEBİLİR İÇ DOLGU (ARKA PLAN) RENKLERİ ════ */
+/* Markdown içinde class="article-card amber" yazdığında bu blok tetiklenir */
+
+.prose .article-card.teal { 
+  --theme-color: #2dd4bf; 
+  --theme-bg: rgba(45, 212, 191, 0.05); 
+  --theme-bg-hover: rgba(45, 212, 191, 0.12); 
+  --theme-border: rgba(45, 212, 191, 0.1);
+}
+.prose .article-card.indigo { 
+  --theme-color: #818cf8; 
+  --theme-bg: rgba(129, 140, 248, 0.05); 
+  --theme-bg-hover: rgba(129, 140, 248, 0.12); 
+  --theme-border: rgba(129, 140, 248, 0.1);
+}
+.prose .article-card.amber { 
+  --theme-color: #fbbf24; 
+  --theme-bg: rgba(251, 191, 36, 0.05); 
+  --theme-bg-hover: rgba(251, 191, 36, 0.12); 
+  --theme-border: rgba(251, 191, 36, 0.1);
+}
+.prose .article-card.purple { 
+  --theme-color: #c084fc; 
+  --theme-bg: rgba(192, 132, 252, 0.05); 
+  --theme-bg-hover: rgba(192, 132, 252, 0.12); 
+  --theme-border: rgba(192, 132, 252, 0.1);
+}
+.prose .article-card.rose { 
+  --theme-color: #fb7185; 
+  --theme-bg: rgba(251, 113, 133, 0.05); 
+  --theme-bg-hover: rgba(251, 113, 133, 0.12); 
+  --theme-border: rgba(251, 113, 133, 0.1);
+}
+.prose .article-card.emerald { 
+  --theme-color: #34d399; 
+  --theme-bg: rgba(52, 211, 153, 0.05); 
+  --theme-bg-hover: rgba(52, 211, 153, 0.12); 
+  --theme-border: rgba(52, 211, 153, 0.1);
+}
+
+/* ═════════════════════════════════════════════════
+   CODE TABS (VS CODE STYLE INTERACTIVE PANELS)
+══════════════════════════════════════════════════ */
+.prose .code-tabs-wrapper {
+  margin: 2rem 0;
+  background: #0f172a; /* Koyu Slate Arka Plan */
+  border-radius: 0.75rem;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  overflow: hidden;
+  box-shadow: 0 10px 30px -10px rgba(0, 0, 0, 0.5);
+}
+
+/* Sekmelerin Olduğu Başlık Çubuğu */
+.prose .tab-headers {
+  display: flex;
+  background: rgba(30, 41, 59, 0.8);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+  overflow-x: auto;
+  /* Mobilde kaydırma barını gizle ama kaydırılabilir olsun */
+  scrollbar-width: none; 
+}
+.prose .tab-headers::-webkit-scrollbar { display: none; }
+
+/* Sekme Butonları */
+.prose .tab-btn {
+  background: transparent;
+  color: #94a3b8;
+  border: none;
+  padding: 0.75rem 1.25rem;
+  font-family: 'Fira Code', 'Cascadia Code', monospace;
+  font-size: 0.85rem;
+  cursor: pointer;
+  border-top: 2px solid transparent; /* Varsayılan görünmez çizgi */
+  transition: all 0.2s ease;
+  white-space: nowrap;
+}
+
+.prose .tab-btn:hover {
+  color: #cbd5e1;
+  background: rgba(255, 255, 255, 0.05);
+}
+
+/* Aktif Sekme Görünümü */
+.prose .tab-btn.active {
+  color: #2dd4bf; /* Turkuaz */
+  background: #0f172a; /* İçerikle aynı renk olsun ki birleşik görünsün */
+  border-top: 2px solid #2dd4bf;
+  font-weight: 700;
+}
+
+/* Kod Panelleri */
+.prose .tab-panel {
+  display: none;
+}
+.prose .tab-panel.active {
+  display: block;
+  animation: fadeIn 0.3s ease;
+}
+
+/* Geçiş Animasyonu */
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(2px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* MDX'ten gelen varsayılan `pre` boşluklarını eziyoruz ki kutuya tam otursun */
+.prose .tab-panel pre {
+  margin: 0 !important;
+  border-radius: 0 0 0.75rem 0.75rem !important;
+  border: none !important;
+  background: transparent !important; /* Arka planı wrapper'dan alsın */
+}
+
+/* ═════════════════════════════════════════════════
+   PRO IMAGE & FIGURE (CENTERED WITH CAPTION)
+══════════════════════════════════════════════════ */
+.prose .pro-figure {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 3rem 0; /* Üstten ve alttan ferah bir boşluk */
+}
+
+/* Resmin Kendisi */
+.prose .pro-figure img {
+  max-width: 100%;
+  height: auto;
+  border-radius: 0.75rem;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  box-shadow: 0 10px 30px -10px rgba(0, 0, 0, 0.5);
+  margin: 0 !important; /* Tailwind prose marginlerini ezer */
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+/* Hafif bir Hover efekti (Üzerine gelince çok hafif öne çıkar) */
+.prose .pro-figure img:hover {
+  transform: scale(1.01);
+  box-shadow: 0 15px 35px -10px rgba(45, 212, 191, 0.2); /* Turkuaz bir ışıltı */
+}
+
+/* Alt Yazı (Caption) */
+.prose .pro-figure figcaption {
+  margin-top: 1rem;
+  font-size: 0.85rem;
+  color: #94a3b8; /* Slate-400 */
+  text-align: center;
+  font-style: italic;
+  max-width: 85%; /* Çok uzun yazılar kenarlara kadar uzamasın, ortada blok kalsın */
+  line-height: 1.6;
+}
+
+/* Caption içindeki özel vurgular için (Opsiyonel) */
+.prose .pro-figure figcaption strong, 
+.prose .pro-figure figcaption b {
+  color: #2dd4bf; /* Vurgulanan kelimeler turkuaz olsun */
+  font-style: normal;
+  font-weight: 600;
+}
+
+
+/* ═════════════════════════════════════════════════
+   KPI / METRIC DASHBOARD (NEON STATS)
+══════════════════════════════════════════════════ */
+.prose .metrics-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+  gap: 1.25rem;
+  margin: 2.5rem 0;
+}
+
+.prose .metric-card {
+  background: linear-gradient(145deg, rgba(30, 41, 59, 0.6), rgba(15, 23, 42, 0.9));
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  border-top: 3px solid #38bdf8; /* Varsayılan Gök Mavisi Çizgi */
+  border-radius: 0.75rem;
+  padding: 1.5rem 1.25rem;
+  text-align: center;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.prose .metric-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 25px -5px rgba(56, 189, 248, 0.2);
+}
+
+/* Değer (Büyük Rakam) */
+.prose .metric-value {
+  font-size: 2.2rem !important;
+  font-weight: 800 !important;
+  font-family: 'Fira Code', 'Cascadia Code', monospace;
+  margin: 0 !important;
+  line-height: 1.1 !important;
+  color: #f8fafc !important; /* Rakamlar varsayılan beyaz/parlak */
+  text-shadow: 0 0 15px rgba(255, 255, 255, 0.1);
+}
+
+/* Etiket (Açıklama) */
+.prose .metric-label {
+  font-size: 0.75rem !important;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: #94a3b8 !important;
+  margin-top: 0.75rem !important;
+  margin-bottom: 0 !important;
+}
+
+/* Trend (Artış/Düşüş Göstergesi) */
+.prose .metric-trend {
+  font-size: 0.7rem;
+  font-weight: 800;
+  margin-top: 0.5rem;
+  padding: 0.15rem 0.5rem;
+  border-radius: 1rem;
+  display: inline-block;
+}
+.prose .metric-trend.up { background: rgba(16, 185, 129, 0.15); color: #34d399; }
+.prose .metric-trend.down { background: rgba(244, 63, 94, 0.15); color: #fb7185; }
+
+/* Renk Seçenekleri (Sihir Burada) */
+.prose .metric-card.rose { border-top-color: #f43f5e; }
+.prose .metric-card.rose:hover { box-shadow: 0 10px 25px -5px rgba(244, 63, 94, 0.25); }
+.prose .metric-card.rose .metric-value { color: #fb7185 !important; text-shadow: 0 0 15px rgba(244, 63, 94, 0.2); }
+
+.prose .metric-card.teal { border-top-color: #14b8a6; }
+.prose .metric-card.teal:hover { box-shadow: 0 10px 25px -5px rgba(20, 184, 166, 0.25); }
+.prose .metric-card.teal .metric-value { color: #2dd4bf !important; text-shadow: 0 0 15px rgba(20, 184, 166, 0.2); }
+
+.prose .metric-card.purple { border-top-color: #c084fc; }
+.prose .metric-card.purple:hover { box-shadow: 0 10px 25px -5px rgba(192, 132, 252, 0.25); }
+.prose .metric-card.purple .metric-value { color: #c084fc !important; text-shadow: 0 0 15px rgba(192, 132, 252, 0.2); }

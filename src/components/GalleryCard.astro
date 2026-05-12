@@ -1,0 +1,31 @@
+---
+// src/components/GalleryCard.astro
+const { title, desc, image, link = "#", tags = "" } = Astro.props;
+
+// Virgülle gelen etiketleri ayırıp diziye çeviriyoruz
+const tagList = tags.split(',').map(tag => tag.trim()).filter(tag => tag.length > 0);
+---
+
+<a href={link} class="md-gallery-card">
+  {/* Eğer resim linki verilmişse resmi bas */}
+  {image && <img src={image} alt={title} class="md-gallery-img" loading="lazy" />}
+  
+  <div class="md-gallery-content">
+    {/* Eğer etiket yazılmışsa md-tags kısmını oluştur */}
+    {tagList.length > 0 && (
+      <div class="md-tags">
+        {tagList.map(tag => {
+          // "Power BI" -> "powerbi", "Machine Learning" -> "ml" gibi CSS sınıflarına uygun formatlama
+          let cssClass = tag.toLowerCase().replace(/\s+/g, '-').replace(/[^a-z0-9\-]/g, '');
+          if (cssClass === 'power-bi') cssClass = 'powerbi';
+          if (cssClass === 'machine-learning') cssClass = 'ml';
+          if (cssClass === 'deep-learning') cssClass = 'dl';
+          
+          return <span class={`md-tag tag-${cssClass}`}>{tag}</span>
+        })}
+      </div>
+    )}
+    <h4 class="md-gallery-title">{title}</h4>
+    <p class="md-gallery-desc">{desc}</p>
+  </div>
+</a>

@@ -1,0 +1,24 @@
+---
+// src/components/ProImage.astro
+const { src, alt = "Project Image", caption, width, height } = Astro.props;
+
+// Eğer width veya height girilmişse bunları birleştirip bir style stringi oluşturuyoruz
+const customStyle = [
+  width && `width: ${width}`,
+  height && `height: ${height}`
+].filter(Boolean).join('; ');
+---
+
+<figure class="pro-figure">
+  <img 
+    src={src} 
+    alt={alt} 
+    loading="lazy" 
+    style={customStyle || null}
+  />
+  
+  {/* Eğer caption girilmişse alt yazıyı bas */}
+  {caption && (
+    <figcaption set:html={caption} />
+  )}
+</figure>

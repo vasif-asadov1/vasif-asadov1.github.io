@@ -1,0 +1,14 @@
+---
+// src/components/ExternalProject.astro
+const { title, desc, url, btnText = "Visit" } = Astro.props;
+---
+
+<div class="external-project-card">
+  <div class="project-info">
+    <h5>{title}</h5>
+    <p>{desc}</p>
+  </div>
+  <a href={url} target="_blank" rel="noopener noreferrer" class="visit-btn">
+    {btnText}
+  </a>
+</div>

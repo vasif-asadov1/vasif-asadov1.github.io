@@ -1,0 +1,9 @@
+---
+// src/components/CompBox.astro
+const { title, type = "pros" } = Astro.props; // type varsayılan olarak 'pros' (artılar)
+---
+
+<div class={`comp-box ${type}`}>
+  <h4>{title}</h4>
+  <slot />
+</div>

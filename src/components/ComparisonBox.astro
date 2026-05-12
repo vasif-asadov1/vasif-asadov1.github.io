@@ -1,0 +1,9 @@
+---
+// src/components/ComparisonBox.astro
+const { title, type = "pros" } = Astro.props; // type "pros" (yeşil) veya "cons" (kırmızı) olabilir
+---
+
+<div class={`comp-box ${type}`}>
+  <h4>{title}</h4>
+  <slot />
+</div>

@@ -1,0 +1,481 @@
+---
+title: "Manage Youtube Videos with yt-dlp and FFmpeg"
+# ... diğer frontmatter bilgileri
+---
+
+import ArticleCard from '../../../components/ArticleCard.astro';
+import ExternalProject from '../../../components/ExternalProject.astro';
+import ReferenceList from '../../../components/ReferenceList.astro';
+import Expand from '../../../components/Expand.astro'; // İSMİ DÜZELTTİK
+import Term from '../../../components/Term.astro';
+import AlgoSteps from '../../../components/AlgoSteps.astro';
+import MathFocus from '../../../components/MathFocus.astro';
+import Citation from '../../../components/Citation.astro';
+import KeyTakeaway from '../../../components/KeyTakeaway.astro';
+import TechGlance from '../../../components/TechGlance.astro';
+import FileTree from '../../../components/FileTree.astro';
+import Folder from '../../../components/Folder.astro';
+import File from '../../../components/File.astro';
+import Timeline from '../../../components/Timeline.astro';
+import TimelineStep from '../../../components/TimelineStep.astro';
+import ComparisonRow from '../../../components/ComparisonRow.astro';
+import CompBox from '../../../components/CompBox.astro';
+import ComparisonGrid from '../../../components/ComparisonGrid.astro';
+import ComparisonBox from '../../../components/ComparisonBox.astro';
+import Gallery from '../../../components/Gallery.astro';
+import GalleryCard from '../../../components/GalleryCard.astro';
+import TagList from '../../../components/TagList.astro';
+import CardGrid from '../../../components/CardGrid.astro';
+import CardRow from '../../../components/CardRow.astro';
+import Card from '../../../components/Card.astro';
+import Callout from '../../../components/Callout.astro';
+import CodeTabs from '../../../components/CodeTabs.astro';
+import ProImage from '../../../components/ProImage.astro';
+import MetricsGrid from '../../../components/MetricsGrid.astro';
+import Metric from '../../../components/Metric.astro';
+
+
+
+### Project Highlights
+
+<MetricsGrid>
+  <Metric 
+    value="307K+" 
+    label="Rows Processed" 
+    color="teal" 
+  />
+  <Metric 
+    value="140+" 
+    label="New Features Engineered" 
+    color="purple" 
+  />
+  <Metric 
+    value="4.2s" 
+    label="DuckDB Execution Time" 
+    color="teal" 
+    trend="85% faster than Pandas" 
+    trendType="up" 
+  />
+</MetricsGrid>
+
+
+
+
+
+### XGBoost Model Performance
+
+<MetricsGrid>
+  <Metric 
+    value="0.84" 
+    label="ROC-AUC Score" 
+    color="rose" 
+    trend="+0.12 post-SMOTE" 
+    trendType="up"
+  />
+  <Metric 
+    value="79%" 
+    label="Recall (Churn Class)" 
+    color="rose" 
+  />
+  <Metric 
+    value="18%" 
+    label="False Positive Rate" 
+    color="teal" 
+    trend="-5% after tuning" 
+    trendType="down"
+  />
+</MetricsGrid>
+
+
+
+We built the interface using Streamlit to make the XGBoost predictions accessible to the business team.
+
+<ProImage 
+  src="/images/profile.png" 
+  alt="Telco Churn App" 
+  caption="<b>Figure 1:</b> Dashboard taking up 50% of the screen." 
+  width="50%" 
+/>
+
+
+<ProImage 
+  src="/images/profile.png" 
+  width="800px" 
+  height="600px" 
+/>
+
+
+<ProImage 
+  src="/images/profile.png" 
+/>
+
+
+
+### Feature Engineering Execution Time
+
+<CodeTabs tabs={["Python (Pandas)", "SQL (DuckDB)"]}>
+  
+  <div slot="tab-0">
+```python
+import pandas as pd
+
+# Pandas uses a single thread and consumes heavy memory
+df = pd.read_csv("previous_application.csv")
+df['avg_credit'] = df.groupby('SK_ID_CURR')['AMT_CREDIT'].transform('mean')
+```
+  </div>
+
+  <div slot="tab-1">
+```sql
+-- DuckDB executes the same logic in seconds using multi-threading
+SELECT 
+  SK_ID_CURR,
+  AVG(AMT_CREDIT) OVER (PARTITION BY SK_ID_CURR) AS avg_credit
+FROM 'previous_application.csv';
+```
+  </div>
+</CodeTabs>
+
+
+
+
+
+
+
+In CachyOS, package management is handled by `pacman`, but you can also use `yay` for the AUR.
+
+<Callout type="note">
+Always update your system using `sudo pacman -Syu` before installing any new heavy packages like Gurobi or CUDA to avoid dependency conflicts.
+</Callout>
+
+
+
+<Callout type="danger" title="Do NOT Format Your Main Drive!">
+Since we are running a dual-boot setup with Fedora, be extremely careful when using `cfdisk`. Deleting the wrong partition will wipe out your primary KDE Plasma environment and all your Python projects!
+</Callout>
+
+
+
+<Callout type="success" title="Pipeline Executed Successfully">
+Our DuckDB query successfully generated 140+ behavioral metrics from the 300,000 records in just 4.2 seconds! We are now ready to feed this data into the XGBoost model.
+</Callout>
+
+
+
+<Callout type="attention" title="Matlab Compatibility Requirement">
+Remember that Matlab relies on older libraries. This is the exact reason why we maintain the Fedora dual-boot instead of running everything on the Arch-based CachyOS.
+</Callout>
+
+
+
+
+
+### Next Steps in Linux Setup
+
+<CardRow>
+<Card 
+color="indigo"
+title="02. Mastering the Fish Shell" 
+desc="Now that we have installed the core tools, let's configure the fish shell for maximum productivity and set up custom aliases." 
+link="/linux-roadmap/app_setups_in_linux/02_fish_shell" 
+/>
+
+<Card 
+color="teal"
+title="03. Configuring Niri Window Manager" 
+desc="A deep dive into setting up keybindings and window rules for the scrollable-tiling Wayland compositor." 
+link="/linux-roadmap/app_setups_in_linux/03_niri_config" 
+/>
+</CardRow>
+
+
+
+
+### Machine Learning Modules
+
+<CardGrid>
+<Card 
+color="rose"
+title="Customer Churn Pipeline" 
+desc="Handling imbalanced data to predict user retention using gradient boosting frameworks." 
+link="/data-science/customer_churn/00_problem_description" 
+tags="Python, Machine Learning, XGBoost"
+/>
+
+<Card 
+color="amber"
+title="Credit Default Engineering" 
+desc="Leveraging blazing fast window functions to extract behavioral metrics from raw loan data." 
+link="/data-analysis/home_credit/02_duckdb_feature_engineering" 
+/>
+</CardGrid>
+
+
+### Featured Projects
+
+<Gallery>
+  <GalleryCard 
+    title="YtbDownloader Desktop App" 
+    desc="A complete desktop application built to download and process YouTube videos using yt-dlp and FFmpeg under the hood." 
+    image="/images/projects/ytb-downloader.png" 
+    link="https://github.com/vasif-asadov1/Youtube-Downloader" 
+    tags="Python, Bash, CLI Tools" 
+  />
+
+  <GalleryCard 
+    title="Telco Customer Churn Prediction" 
+    desc="An end-to-end ML pipeline with SMOTE resampling, engineered to predict churn and deployed via Streamlit." 
+    image="/images/projects/telco-churn.png" 
+    link="/data-science/customer_churn/00_problem_description" 
+    tags="Python, Machine Learning, XGBoost" 
+  />
+
+  <GalleryCard 
+    title="Home Credit Default Risk Analysis" 
+    desc="Aggregated over 300k loan records to engineer 140+ new behavioral metrics for predictive modeling." 
+    image="/images/profile.png" 
+    link="/data-analysis/home_credit/02_duckdb_feature_engineering" 
+    tags="DuckDB, SQL, EDA" 
+  />
+</Gallery>
+
+### XGBoost vs. Random Forest
+
+<ComparisonGrid>
+  <ComparisonBox title="XGBoost Advantages" type="pros">
+    - Handles missing data automatically without manual imputation.
+    - Built-in cross-validation at each iteration.
+    - Extremely fast execution speed compared to traditional GBMs.
+    - Tree pruning helps in preventing overfitting.
+  </ComparisonBox>
+
+  <ComparisonBox title="XGBoost Disadvantages" type="cons">
+    - Requires more hyperparameter tuning than Random Forest.
+    - Can be prone to overfitting if parameters (like depth) are not tuned well.
+    - Harder to interpret compared to a single decision tree.
+  </ComparisonBox>
+</ComparisonGrid>
+
+
+
+### Why CachyOS as My Daily Driver?
+
+<ComparisonGrid>
+  <ComparisonBox title="The Benefits" type="pros">
+    - Out-of-the-box performance optimizations (v3/v4 CPU instructions).
+    - Access to the vast Arch User Repository (AUR).
+    - Incredible battery life management on the HP Pavilion.
+    - Seamless integration with the Niri Wayland compositor.
+  </ComparisonBox>
+
+  <ComparisonBox title="The Trade-offs" type="cons">
+    - Bleeding-edge updates can occasionally break packages.
+    - Requires comfort with the CLI for troubleshooting.
+    - Matlab compatibility is tricky (hence the Fedora dual-boot).
+  </ComparisonBox>
+</ComparisonGrid>
+
+
+
+### MkDocs vs. Astro + Tailwind CSS
+
+<ComparisonRow>
+<CompBox title="MkDocs: The Good and The Bad" type="cons">
+- **Pros:** Excellent for quick documentation, requires zero CSS knowledge, and easy to deploy.
+- **Cons:** You are trapped in pre-built templates. Full UI customization is hard. 
+- **Verdict:** Great for standard docs, not ideal for a highly customized portfolio.
+</CompBox>
+
+<CompBox title="Astro + Tailwind CSS: The Ultimate Freedom" type="pros">
+- **Performance:** Blazing fast load times with zero JavaScript by default.
+- **Control:** Absolute freedom over every pixel using Tailwind CSS.
+- **Component Architecture:** Easily build reusable `.astro` components (like this box!).
+- **Verdict:** The perfect stack for an elite, custom-built Digital Garden.
+</CompBox>
+</ComparisonRow>
+
+
+
+### Why DuckDB over Pandas for 300k+ Records?
+
+<ComparisonRow>
+<CompBox title="Pandas Approach" type="cons">
+When engineering 140+ features using Pandas `apply()` and `groupby()` functions, the process consumed excessive RAM and ran on a single thread. It became a significant bottleneck in the pipeline.
+</CompBox>
+
+<CompBox title="DuckDB Approach" type="pros">
+DuckDB seamlessly executed complex Window Functions directly on the CSV/Parquet files. It automatically utilized all CPU cores, dropping feature engineering time from minutes to mere seconds.
+</CompBox>
+</ComparisonRow>
+
+
+### My Journey
+
+<Timeline>
+<TimelineStep title="B.Sc. in Process Automation Engineering" date="Graduated">
+Baku Higher Oil School. Gained fundamental knowledge in control systems, automation architectures, and industrial software.
+</TimelineStep>
+
+<TimelineStep title="Microsoft Certified Power BI Data Analyst" date="Feb 2026">
+Earned the official PL-300 certification, proving expertise in data modeling, DAX, and executive dashboard design.
+</TimelineStep>
+
+<TimelineStep title="Data Scientist Certificate" date="Early 2026">
+Completed an intensive bootcamp at Data Science Academy, mastering end-to-end ML pipelines and advanced analytics.
+</TimelineStep>
+</Timeline>
+
+### Project Development Roadmap
+
+<Timeline>
+<TimelineStep title="Data Collection & Cleaning" date="Phase 1">
+Started with raw telco data. Handled missing values, formatted data types, and removed duplicates to prepare a solid foundation.
+</TimelineStep>
+
+<TimelineStep title="Advanced Feature Engineering" date="Phase 2">
+Utilized DuckDB to engineer 140+ behavioral metrics from over 300,000 records. Grouped customer transaction histories using fast window functions.
+</TimelineStep>
+
+<TimelineStep title="Model Training & Tuning" date="Phase 3">
+Applied SMOTE for class imbalance. Trained an XGBoost classifier and optimized hyperparameters using cross-validation to maximize ROC-AUC.
+</TimelineStep>
+
+<TimelineStep title="Deployment via Streamlit" date="Final Phase">
+Wrapped the final predictive model in an interactive web application, allowing real-time churn probability scoring.
+</TimelineStep>
+</Timeline>
+
+
+
+### End-to-End Model Training Pipeline
+
+<AlgoSteps 
+  steps={[
+    "Load the dataset using <code>Polars</code> and drop missing records.",
+    "Apply <b>SMOTE</b> to handle the imbalanced target variable.",
+    "Split the data into 80% training and 20% testing sets.",
+    "Train the XGBoost classifier and evaluate using ROC-AUC."
+  ]} 
+/>
+
+
+
+
+### Mathematical Formulation
+Tezindeki o kritik Model Predictive Control (MPC) maliyet fonksiyonunu (Cost Function) vurgulamak için `<MathFocus>` kullan. Arka planda o şık sigma (∑) işareti belirecek:
+
+<MathFocus>
+  The objective of the Model Predictive Controller is to minimize the cost function $J$ over the prediction horizon $N$:
+
+  $$ J = \sum_{k=0}^{N-1} \left( \| x_{k+1} - r_{k+1} \|_{Q}^2 + \| u_k \|_{R}^2 \right) $$
+
+</MathFocus>
+
+### Literature Review
+Literatür taraması yaparken veya bir makaleden alıntı yaparken `<Citation>` kullan. İtalik yazı ve o turkuaz yazar ismi inanılmaz elit durur:
+
+<Citation author="Smith et al., Deep Learning for Control (2024)">
+  "The integration of deep neural networks into predictive control schemes drastically reduces the online computational burden for nonlinear systems, albeit at the cost of requiring robust offline training pipelines."
+</Citation>
+
+### Article Conclusion
+Makalenin veya bölümün en sonunda okuyucuya "Buradan ne anlamalısın?" mesajını verirken `<KeyTakeaway>` kullan. O gradient arka plan ve 💡 ikonu direkt göze çarpacak:
+
+<KeyTakeaway title="Crucial Summary for DuckDB Processing">
+  When dealing with datasets exceeding 100,000 records like the Home Credit Default Risk, always prefer DuckDB's native window functions over Pandas `apply()` methods. It drastically reduces memory overhead and leverages your CPU's multi-threading capabilities automatically.
+</KeyTakeaway>
+
+
+
+
+<TechGlance 
+info={[
+{ label: "Dataset Size", value: "300,000+ Records" },
+{ label: "Core Stack", value: "DuckDB, Python" },
+{ label: "ML Model", value: "LightGBM / XGBoost" },
+{ label: "Objective", value: "Default Risk Prediction" }
+]} 
+/>
+
+<TechGlance 
+info={[
+{ label: "Operating System", value: "CachyOS" },
+{ label: "Window Manager", value: "Niri (Wayland)" },
+{ label: "Terminal", value: "Alacritty + Fish" },
+{ label: "Theme", value: "Catppuccin Mocha" }
+]} 
+/>
+
+
+
+
+<TechGlance 
+info={[
+{ label: "Research Domain", value: "Control Theory" },
+{ label: "Architecture", value: "Deep Neural Networks" },
+{ label: "System Type", value: "Nonlinear Dynamics" },
+{ label: "Framework", value: "PyTorch" }
+]} 
+/>
+
+
+
+<FileTree>
+<Folder name="src" comment="Ana kaynak kodları">
+<Folder name="components" comment="Astro bileşenlerimiz">
+<File name="ArticleCard.astro" active={true} comment="Makale kartı şablonu" />
+<File name="FileTree.astro" />
+<File name="Folder.astro" />
+</Folder>
+<Folder name="content" comment="MDX yazılarımız">
+<Folder name="linux-roadmap">
+<File name="01_yt_dlp_ffmpeg.mdx" active={true} />
+</Folder>
+</Folder>
+<Folder name="layouts" open={false} comment="Sayfa tasarımları (Tıklayıp açın)">
+<File name="ArticleLayout.astro" />
+</Folder>
+</Folder>
+<File name="astro.config.mjs" comment="Astro konfigürasyonu" />
+<File name="tailwind.config.cjs" />
+</FileTree>
+
+
+<FileTree>
+<Folder name="data" open={false} comment="Veri setleri (.gitignore'a eklendi)">
+<File name="application_train.csv" />
+<File name="previous_application.csv" />
+</Folder>
+<Folder name="notebooks" comment="Keşifçi Veri Analizi (EDA)">
+<File name="01_eda_and_cleaning.ipynb" />
+<File name="02_feature_engineering.ipynb" active={true} comment="DuckDB kullanıldı" />
+</Folder>
+<Folder name="src" comment="Model Pipeline">
+<File name="train.py" active={true} comment="XGBoost eğitim scripti" />
+<File name="predict.py" />
+</Folder>
+<File name="requirements.txt" comment="Python bağımlılıkları" />
+<File name="README.md" />
+</FileTree>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

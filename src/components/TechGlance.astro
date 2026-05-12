@@ -1,0 +1,13 @@
+---
+// src/components/TechGlance.astro
+const { info = [] } = Astro.props;
+---
+
+<div class="tech-glance">
+  {info.map((item) => (
+    <div class="glance-item">
+      <span class="glance-label">{item.label}</span>
+      <span class="glance-value" set:html={item.value}></span>
+    </div>
+  ))}
+</div>

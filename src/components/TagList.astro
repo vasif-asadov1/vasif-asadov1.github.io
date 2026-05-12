@@ -1,0 +1,16 @@
+---
+// src/components/TagList.astro
+const { tags = "" } = Astro.props;
+const tagList = tags.split(',').map(tag => tag.trim()).filter(tag => tag.length > 0);
+---
+
+<div class="md-tags">
+  {tagList.map(tag => {
+    let cssClass = tag.toLowerCase().replace(/\s+/g, '-').replace(/[^a-z0-9\-]/g, '');
+    if (cssClass === 'power-bi') cssClass = 'powerbi';
+    if (cssClass === 'machine-learning') cssClass = 'ml';
+    if (cssClass === 'deep-learning') cssClass = 'dl';
+    
+    return <span class={`md-tag tag-${cssClass}`}>{tag}</span>
+  })}
+</div>

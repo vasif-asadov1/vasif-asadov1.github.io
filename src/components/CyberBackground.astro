@@ -1,0 +1,77 @@
+---
+// src/components/CyberBackground.astro
+
+// Sitede kaç damla yağmur olmasını istediğini buradan ayarlayabilirsin (20 idealdir)
+const dropCount = 20;
+const drops = Array.from({ length: dropCount });
+---
+
+<div class="cyber-bg-wrapper">
+  {/* Arkadaki hafif kareli AI/Mühendislik şablonu */}
+  <div class="cyber-grid"></div>
+  
+  {/* Rastgele pozisyon ve hızlarda akan veri yağmuru */}
+  {drops.map(() => {
+    // Astro derleme aşamasında rastgele değerler atar, client'a 0 JS gider!
+    const leftPos = Math.random() * 100;
+    const duration = Math.random() * 5 + 3; // 3 ile 8 saniye arası düşüş hızı (yavaş ve sönük)
+    const delay = Math.random() * 5;
+    const opacity = Math.random() * 0.3 + 0.1; // Çok sönük, %10 ile %40 arası opaklık
+
+    return (
+      <div 
+        class="cyber-drop" 
+        style={`left: ${leftPos}vw; animation-duration: ${duration}s; animation-delay: ${delay}s; opacity: ${opacity};`}
+      ></div>
+    );
+  })}
+</div>
+
+<style is:global>
+  /* Kapsayıcı: Tüm ekranı kaplar, en arkaya atılır ve tıklamaları engellemez! */
+  .cyber-bg-wrapper {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    z-index: -50; /* Yazıların çok çok arkasında */
+    pointer-events: none; /* HAYATİ: Linklere tıklamanı engellemesin diye */
+    overflow: hidden;
+    background-color: #0f172a; /* Sitenin ana koyu arka plan rengi */
+  }
+
+  /* Çok hafif, saydam bir mühendislik ızgarası (Grid) */
+  .cyber-grid {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background-image: 
+      linear-gradient(rgba(255, 255, 255, 0.015) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(255, 255, 255, 0.015) 1px, transparent 1px);
+    background-size: 40px 40px; /* Karelerin boyutu */
+    z-index: 1;
+  }
+
+  /* Yağmur Damlası (Data Stream) Stili */
+  .cyber-drop {
+    position: absolute;
+    top: -150px;
+    width: 1px; /* İncecik bir çizgi */
+    height: 120px; /* Uzunluk */
+    /* Yukarısı tamamen saydam, aşağıya doğru sönük bir turkuaz/teal ışık */
+    background: linear-gradient(to bottom, transparent, rgba(45, 212, 191, 0.8));
+    animation: cyber-fall linear infinite;
+    z-index: 2;
+  }
+
+  /* Yağmurun Akış Animasyonu */
+  @keyframes cyber-fall {
+    0% {
+      transform: translateY(-10vh);
+    }
+    100% {
+      transform: translateY(110vh); /* Ekranın altından çıkana kadar in */
+    }
+  }
+</style>

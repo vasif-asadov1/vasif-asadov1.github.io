@@ -1,0 +1,33 @@
+---
+// src/components/Callout.astro
+const { type = "note", title } = Astro.props;
+
+// Türlere göre otomatik ikonlar atıyoruz
+const icons = {
+  note: "ℹ️",
+  attention: "🔔",
+  success: "✅",
+  warning: "⚠️",
+  danger: "🚨"
+};
+
+// Eğer kullanıcı özel bir başlık girmezse, türün adını başlık yapıyoruz (Örn: "Note", "Danger")
+const defaultTitles = {
+  note: "Note",
+  attention: "Attention",
+  success: "Success",
+  warning: "Warning",
+  danger: "Danger"
+};
+
+const currentIcon = icons[type] || icons.note;
+const currentTitle = title || defaultTitles[type] || 'Note';
+---
+
+<div class={`callout ${type}`}>
+  <h4 class="callout-title">
+    <span>{currentIcon}</span> {currentTitle}
+  </h4>
+  {/* MDX içindeki yazılarımız buraya otomatik <p> etiketleriyle gelecek */}
+  <slot />
+</div>

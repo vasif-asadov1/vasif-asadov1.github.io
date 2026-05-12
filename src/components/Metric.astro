@@ -1,0 +1,17 @@
+---
+// src/components/Metric.astro
+const { label, value, color = "teal", trend, trendType = "up" } = Astro.props;
+// color seçenekleri: "teal", "rose", "purple", veya boş bırakırsan mavi.
+// trendType: "up" (Yeşil yukarı ok) veya "down" (Kırmızı aşağı ok).
+---
+<div class={`metric-card ${color}`}>
+  <h3 class="metric-value">{value}</h3>
+  <p class="metric-label">{label}</p>
+  
+  {/* Eğer trend girilmişse artış/düşüş okunu göster */}
+  {trend && (
+    <span class={`metric-trend ${trendType}`}>
+      {trendType === 'up' ? '▲' : '▼'} {trend}
+    </span>
+  )}
+</div>

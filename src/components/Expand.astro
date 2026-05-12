@@ -1,0 +1,11 @@
+---
+// src/components/Expand.astro
+const { title = "Click to expand" } = Astro.props;
+---
+
+<details>
+  <summary>{title}</summary>
+  <div class="mt-4 mb-2">
+    <slot />
+  </div>
+</details>
