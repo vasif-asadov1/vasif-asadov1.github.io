@@ -1,7 +1,7 @@
 ---
 import '../styles/global.css';
 import Navbar from '../components/Navbar.astro';
-import CyberBackground from '../components/CyberBackground.astro'; // 1. SİBER YAĞMURU İÇE AKTARDIK
+import CyberBackground from '../components/CyberBackground.astro'; // SİBER YAĞMUR İÇE AKTARILDI
 
 // 1. FRONTMATTER ALANI (Server-side JavaScript/TypeScript)
 interface Props {
@@ -12,6 +12,7 @@ const { title } = Astro.props;
 ---
 
 <!DOCTYPE html>
+{/* 2. TÜM SİTEYİ KALICI OLARAK KARANLIK MODA KİLİTLİYORUZ */}
 <html lang="en" class="dark">
     <head>
         <meta charset="UTF-8" />
@@ -29,12 +30,12 @@ const { title } = Astro.props;
     
     <body class="bg-gray-50 text-gray-900 dark:bg-gradient-to-br dark:from-[#1e212b] dark:to-[#14161c] dark:text-slate-200 min-h-screen flex flex-col antialiased selection:bg-teal-500 selection:text-white">
         
-        {/* 2. TÜM SİTENİN ARKASINA YAĞMURU YERLEŞTİRİYORUZ */}
+        {/* 3. TÜM SİTENİN ARKASINA YAĞMURU YERLEŞTİRİYORUZ */}
         <CyberBackground />
         
         <Navbar />
 
-        {/* 3. İçeriğin yağmurun üstünde kalmasını garantilemek için relative ve z-10 ekledik */}
+        {/* 4. İçeriğin yağmurun üstünde kalmasını garantilemek için relative ve z-10 ekledik */}
         <main class="flex-grow w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 relative z-10">
             <slot />
         </main>
