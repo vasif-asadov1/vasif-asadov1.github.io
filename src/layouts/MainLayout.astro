@@ -3,8 +3,6 @@ import '../styles/global.css';
 import Navbar from '../components/Navbar.astro';
 import CyberBackground from '../components/CyberBackground.astro'; 
 import BackToTop from '../components/BackToTop.astro'; 
-// 1. SİHİRLİ GEÇİŞ MODÜLÜNÜ İÇE AKTARIYORUZ
-import { ClientRouter } from 'astro:transitions';
 
 // FRONTMATTER ALANI (Server-side JavaScript/TypeScript)
 interface Props {
@@ -30,8 +28,6 @@ const { title } = Astro.props;
           crossorigin="anonymous"
         />
         
-        {/* 2. SİTEYİ SPA (SINGLE PAGE APPLICATION) YAPAN ETİKET */}
-        <ClientRouter />
     </head>
     
     <body class="bg-gradient-to-br from-[#1e212b] to-[#14161c] text-slate-200 min-h-screen flex flex-col antialiased selection:bg-teal-500 selection:text-white">
